@@ -16,13 +16,14 @@ services:
 
   app:
     build: .
-    ports:
-      - '8000:8000'
     networks:
       - 'testing-net'
+    ports:
+      - '8000:8000'
     environment:
       IP: 0.0.0.0
-      POSTGRES_PASSWORD : 0000
       POSTGRES_URL: postgresql
+      PORT: 8000
+      POSTGRES_PASSWORD: 0000
     depends_on: 
       - 'postgresql'
