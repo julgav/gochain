@@ -2,6 +2,7 @@ FROM golang:latest AS builder
 COPY app.go .
 COPY blockchain.html .
 COPY openapi.yml .
+WORKDIR /go
 
 RUN go get -d -v \
     github.com/lib/pq \
@@ -15,4 +16,4 @@ COPY blockchain.html .
 COPY openapi.yml .
 EXPOSE 8000
 
-CMD /go/app
+CMD ["./a.out"]
