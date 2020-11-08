@@ -3,6 +3,9 @@ version: '3.6'
 networks:
   testing-net:
 
+volumes:
+  database-go: {}
+
 services:
   postgresql:
     image: postgres:latest
@@ -10,7 +13,7 @@ services:
     networks:
       - 'testing-net'
     volumes: 
-      - '/var/lib/postgresql/data'
+      - database-go:/var/lib/postgresql/data
     environment :
       POSTGRES_PASSWORD: 0000
 
