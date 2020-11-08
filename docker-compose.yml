@@ -1,0 +1,28 @@
+version: '3.6'
+
+networks:
+  testing-net:
+
+services:
+  postgresql:
+    image: postgres:latest
+    restart: always
+    networks:
+      - 'testing-net'
+    volumes: 
+      - '/var/lib/postgresql/data'
+    environment :
+      POSTGRES_PASSWORD: 0000
+
+  app:
+    build: .
+    ports:
+      - '8000:8000'
+    networks:
+      - 'testing-net'
+    environment:
+      IP: 0.0.0.0
+      POSTGRES_PASSWORD : 0000
+      POSTGRES_URL: postgresql
+    depends_on: 
+      - 'postgresql'
